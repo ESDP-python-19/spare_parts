@@ -24,7 +24,7 @@ class VehicleInfo(models.Model):
     engine = models.ForeignKey(Engine, null=True, blank=True, related_name="vehicle_infos", on_delete=models.CASCADE)  # связь с двигателем
 
     def __str__(self):
-        return f"{self.model.brand.name} {self.model.name} ({self.year_of_manufacture})"
+        return f"{self.model.brand.name} {self.model.name}  ({self.year_of_manufacture})"
 
     class Meta:
         verbose_name_plural = "vehicles"
