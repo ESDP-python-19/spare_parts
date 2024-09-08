@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="get" action="{% url 'search' %}">
+    {{ form.as_p }}
+    <button type="submit">Найти</button>
+</form>
+
+<h2>Результаты поиска:</h2>
+
+{% if part_results %}
+    <h3>Запчасти:</h3>
+    <ul>
+        {% for part in part_results %}
+            <li>{{ part.name }} - Цена: {{ part.price }} - {{ part.category }} - {{ part.vehicle_info }} </li>
+        {% empty %}
+            <li>Запчасти не найдены.</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if vehicle_results %}
+    <h3>Транспортные средства:</h3>
+    <ul>
+        {% for vehicle in vehicle_results %}
+            <li>{{ vehicle.model.brand.name }} {{ vehicle.model.name }} ({{ vehicle.year_of_manufacture }})</li>
+        {% empty %}
+            <li>Транспортные средства не найдены.</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if car_results %}
+    <h2>Найденные бренды:</h2>
+    <ul>
+    {% for car in car_results %}
+        <li>{{ brand.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Бренды не найдены</p>
+{% endif %}
+
+{% if part_results %}
+    <h2>Запчасти для найденных брендов:</h2>
+    <ul>
+    {% for part in part_results %}
+        <li>{{ part.name }} — {{ part.vehicle_info.model.brand.name }} {{ part.vehicle_info.model.name }} ({{ vehicle.year_of_manufacture }})</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Запчасти не найдены</p>
+{% endif %}
+
+{% if not part_results and not vehicle_results %}
+    <p>По вашему запросу ничего не найдено.</p>
+{% endif %}
+</body>
+</html>
