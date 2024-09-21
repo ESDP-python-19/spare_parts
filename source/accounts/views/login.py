@@ -4,9 +4,9 @@ from accounts.forms.auth_form import LoginForm
 from django.shortcuts import redirect
 
 
-class CustomLoginView(LoginView):
+class UserLoginView(LoginView):
     form_class = LoginForm
-    template_name = 'login.html'
+    template_name = 'registration/login.html'
 
     def form_valid(self, form):
         login(self.request, form.get_user())
