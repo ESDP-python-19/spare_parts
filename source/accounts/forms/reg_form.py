@@ -7,10 +7,16 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'phone_number', 'password1', 'password2']
+        fields = ['username','email', 'phone_number', 'password1', 'password2']
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get('phone_number')
         if User.objects.filter(phone_number=phone_number).exists():
             raise forms.ValidationError("Пользователь с этим номером телефона уже зарегистрирован.")
         return phone_number
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('Email уже используется')
+        return email
