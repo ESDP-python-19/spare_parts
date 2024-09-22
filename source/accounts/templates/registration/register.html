@@ -121,22 +121,7 @@
             <form method="POST" action="{% url 'accounts:register' %}">
                 {% csrf_token %}
 
-                <input type="text" class="text" name="username" required>
-                <span>Имя пользователя</span>
-
-                <input type="email" class="text" name="email" required>
-                <span>Email</span>
-
-                <input type="email" class="text" name="phone_number" required>
-                <span>Номер телефона</span>
-
-
-                <input type="password" class="text" name="password1" required>
-                <span>Пароль</span>
-
-                <input type="password" class="text" name="password2" required>
-                <span>Потверждение пароля</span>
-
+                {{ form.as_p }}
                 <button class="signin" type="submit">Зарегистрироваться</button>
 
                 <hr>
