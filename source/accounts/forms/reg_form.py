@@ -4,6 +4,8 @@ from accounts.models import User
 
 class RegisterForm(UserCreationForm):
     phone_number = forms.CharField(max_length=15, required=True, help_text='Обязательно для заполнения')
+    username = forms.CharField(max_length=150, required=True,help_text='Не более 150 символов.Только буквы,цифры и @/./+/-/_')
+    password2 = forms.CharField(help_text='Введите одинаковый пароль для регистрации')
 
     class Meta:
         model = User
