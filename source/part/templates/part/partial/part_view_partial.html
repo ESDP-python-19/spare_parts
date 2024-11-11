@@ -6,8 +6,9 @@
         <div id="partCarousel{{ part.pk }}" class="carousel slide" data-bs-interval="false">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ part.image1.url }}" alt="{{ part.name }}"
-                         class="card-img-top img-fluid custom-carousel-img-main">
+                    <a href="{% url 'part:part_detail' part.pk %}">
+                    <img src="{{ part.image1.url }}" alt="{{ part.name }}" class="card-img-top img-fluid custom-carousel-img-main">
+                </a>
                 </div>
                 {% if part.image2 %}
                     <div class="carousel-item">
